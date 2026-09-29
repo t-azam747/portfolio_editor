@@ -1,0 +1,398 @@
+/* =========================================================
+   CONFIG: CSS VARIABLES (Easily customizable at the top)
+   ========================================================= */
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --muted-color: #737373;
+  --border-color: #e5e5e5;
+  --pill-border: #000000;
+  --curtain-bg: #fafafa;
+  --purple-tint: rgba(168, 85, 247, 0.4);
+
+  /* Modern Neo-grotesque Typography */
+  --font-sans: 'Inter Tight', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+  /* Layout Spacing */
+  --nav-height: 80px;
+  --side-padding: clamp(24px, 5vw, 64px);
+}
+
+/* =========================================================
+   BASE RESET & SETUP
+   ========================================================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.loading {
+  overflow: hidden !important;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* =========================================================
+   STEP 1: LOADER OVERLAY (0 to ~1.5s)
+   ========================================================= */
+.loader-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background-color: var(--bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.loader-counter {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-color);
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+}
+
+/* =========================================================
+   STEP 2: CURTAIN PANEL OVERLAY (~0.7s)
+   ========================================================= */
+.curtain-panel {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: linear-gradient(180deg, var(--curtain-bg) 0%, #f0f0f0 100%);
+  transform-origin: top center;
+  pointer-events: none;
+  opacity: 0;
+  display: none;
+}
+
+/* =========================================================
+   HERO PAGE STRUCTURE (Revealed Underneath)
+   ========================================================= */
+.hero-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 var(--side-padding);
+}
+
+/* =========================================================
+   TOP NAV ROW
+   ========================================================= */
+.top-nav {
+  width: 100%;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+}
+
+.brand-pill {
+  display: inline-block;
+  border: 1px solid var(--pill-border);
+  border-radius: 9999px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: opacity 0.2s ease;
+}
+
+.brand-pill:hover {
+  opacity: 0.7;
+}
+
+.nav-center {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(16px, 3vw, 36px);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.nav-link {
+  transition: opacity 0.2s ease;
+}
+
+.nav-link:hover {
+  opacity: 0.6;
+}
+
+.nav-link sup {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--muted-color);
+  margin-left: 2px;
+}
+
+.get-in-touch {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+/* =========================================================
+   CENTER HERO: DISPLAY NAME & SUBTITLE
+   ========================================================= */
+.hero-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 0;
+}
+
+.display-name-wrap {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.display-name {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(3.8rem, 13vw, 12.5rem);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+  white-space: nowrap;
+}
+
+/* Individual letter masks for upward baseline reveal */
+.letter-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.char {
+  display: inline-block;
+  transform: translateY(105%);
+  will-change: transform;
+}
+
+/* Name Halves */
+.name-half {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* =========================================================
+   STEP 4: IMAGE SLOT (Opens between "Matt" and "hieu")
+   ========================================================= */
+.slot-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0;
+  overflow: hidden;
+  vertical-align: middle;
+  transform: translateZ(0);
+  will-change: width;
+}
+
+.slot-perspective {
+  perspective: 1000px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slot-card {
+  position: relative;
+  width: clamp(3.2rem, 11vw, 10.5rem);
+  height: clamp(3.2rem, 11vw, 10.5rem);
+  aspect-ratio: 1 / 1;
+  border-radius: 0; /* Pure square with sharp edges */
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transform: rotateY(80deg);
+  opacity: 0;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: #111111;
+  will-change: transform, opacity;
+}
+
+/* Light purple tint settling in */
+.slot-tint {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background-color: var(--purple-tint);
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+/* Cycling Slideshow Thumbnails */
+.thumbnail-slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.thumb-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 0.6s ease-in-out, transform 0.6s ease-in-out;
+}
+
+.thumb-slide.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* =========================================================
+   SUBTITLE: 3-LINE CENTERED MASK REVEAL
+   ========================================================= */
+.subtitle-wrap {
+  margin-top: clamp(24px, 4vw, 44px);
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.subtitle-line-mask {
+  overflow: hidden;
+  display: block;
+}
+
+.subtitle-line {
+  font-size: clamp(1.1rem, 2.1vw, 1.85rem);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  color: var(--text-color);
+  transform: translateY(110%);
+  will-change: transform;
+}
+
+.subtitle-line.line-3 {
+  font-weight: 400;
+  color: var(--muted-color);
+  font-size: clamp(1rem, 1.8vw, 1.55rem);
+  margin-top: 4px;
+}
+
+/* =========================================================
+   BOTTOM ROW (Separated by 1px light-grey line)
+   ========================================================= */
+.bottom-row {
+  width: 100%;
+  border-top: 1px solid var(--border-color);
+  padding: 22px 0 28px;
+  display: grid;
+  grid-template-columns: 1fr 2.5fr 1fr;
+  align-items: baseline;
+  gap: 16px;
+  font-size: 13px;
+}
+
+.bottom-left {
+  text-align: left;
+}
+
+.approach-tag {
+  color: var(--muted-color);
+  font-weight: 400;
+}
+
+.bottom-center {
+  text-align: center;
+}
+
+.approach-text {
+  color: var(--text-color);
+  font-weight: 400;
+  line-height: 1.5;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.mono-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted-color);
+  margin-right: 6px;
+}
+
+.bottom-right {
+  text-align: right;
+}
+
+.more-link {
+  font-weight: 400;
+  transition: opacity 0.2s ease;
+}
+
+.more-link:hover {
+  opacity: 0.6;
+}
+
+/* Initial state for elements animating in step 3 */
+.nav-item, .bottom-item {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN (Mobile Breakdown)
+   ========================================================= */
+@media (max-width: 768px) {
+  :root {
+    --side-padding: 20px;
+  }
+
+  .nav-center {
+    display: none; /* Clean mobile nav */
+  }
+
+  .bottom-row {
+    grid-template-columns: 1fr;
+    text-align: left;
+    gap: 12px;
+  }
+
+  .bottom-left, .bottom-center, .bottom-right {
+    text-align: left;
+  }
+
+  .approach-text {
+    margin: 0;
+  }
+}

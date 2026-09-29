@@ -1,0 +1,25 @@
+export const content = {
+  name: "Tousif Azam",
+  title: "Video Editor & Cinematographer",
+  tagline: "Stories shot and cut with intent.",
+  email: "tousifazam747@gmail.com",
+  phone: "",
+  bio: "Cinematographer and video editor dedicated to crafting evocative visual stories. Experienced across narrative short films, commercial projects, and dynamic social edits with an emphasis on rhythm, mood, and cinematic color grading.",
+  skills: [
+    "Premiere Pro",
+    "DaVinci Resolve Studio",
+    "After Effects",
+    "Color Grading",
+    "Cinematography",
+    "Sound Design & Mixing",
+    "Visual Storytelling",
+    "Camera & Lighting",
+  ],
+  socials: {
+    instagram: "https://www.instagram.com/p/DTXypmDCatG/",
+    youtube: "https://www.youtube.com/watch?v=UyKsfXrS_40",
+    drive: "https://drive.google.com/drive/folders/19InI31NISpEoEah9gqmSGQcUtheo3iKQ",
+    linkedin: "",
+    vimeo: "",
+  },
+};
